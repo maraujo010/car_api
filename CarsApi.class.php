@@ -65,7 +65,7 @@ class CarsApi extends Restful
 			
 			$jsonArray["cars"] = $resultArray;	
 			$this->db = null;
-			return $jsonArray;
+			return $jsonArray["cars"];
 		
 		}		
 		
