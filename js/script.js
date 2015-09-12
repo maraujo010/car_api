@@ -6,7 +6,7 @@ function init(){
         renderer:'canvas',
     	view: new ol.View({    		
     		center: ol.proj.transform([-0.1973237, 51.5412081], 'EPSG:4326', 'EPSG:3857'),
-    		zoom:15
+    		zoom:14
     	})
     });
     
@@ -20,14 +20,12 @@ function init(){
 
 function drawPoints(points) {
 
-alert(points[0]["longitude"]);
-/*
-	for (i=0; i<pointsArray.length; i++) {
+	for (i=0; i<points.length; i++) {
 		markerLayer = new ol.layer.Vector({
 			source: new ol.source.Vector({
 				features: [
 					new ol.Feature({
-						geometry: new ol.geom.Circle(ol.proj.transform([-0.1973237, 51.5412081], 'EPSG:4326', 'EPSG:3857'), 20)
+						geometry: new ol.geom.Circle(ol.proj.transform([points[i]['longitude'], points[i]['latitude']], 'EPSG:4326', 'EPSG:3857'), 50)
 					})
 				]
 			}),
@@ -46,7 +44,7 @@ alert(points[0]["longitude"]);
 
 		map.addLayer(markerLayer);			
 	}
-*/
+
 }
 
 function callWebservice(url) {

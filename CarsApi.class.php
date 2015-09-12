@@ -7,8 +7,8 @@ define('DB_DATABASE', "cars");
 define('DB_USER', "test");
 define('DB_PASSWORD', "test");
 
-function car($description, $longitude, $latitude) {
-	$carAssArray = ['description'=> $description, 'longitude' => (float)$longitude, 'latitude' => (float)$latitude];
+function car($description, $latitude, $longitude) {
+	$carAssArray = ['description'=> $description, 'latitude' => (float)$latitude, 'longitude' => (float)$longitude];
 	return $carAssArray;
 }	
 
@@ -87,7 +87,7 @@ class CarsApi extends Restful
 				
 				try {
 					$result = $this->db->prepare("select description, latitude, longitude from 
-												  (select description, longitude, latitude, ST_Distance(geography(geom), ST_GeographyFromText('POINT(".$point[1]." ".$point[0].")')) as distance 
+												  (select description, latitude, longitude, ST_Distance(geography(geom), ST_GeographyFromText('POINT(".$point[1]." ".$point[0].")')) as distance 
 												  from cars where ST_DWithin(geom,  st_setsrid(st_makepoint(".$point[1].", ".$point[0]."),4326),".$dist.")
 												  order by distance) as points LIMIT 10");	
 					$result->execute();				
