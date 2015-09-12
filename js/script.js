@@ -1,4 +1,7 @@
 var map;
+var api_url_all = 'http://localhost/api/cars/all';
+var api_url_nearest = 'http://localhost/api/cars?location=';
+
 
 function init(){
     map = new ol.Map({
@@ -14,11 +17,17 @@ function init(){
     source: new ol.source.OSM()});
 
 	map.addLayer(newLayer);	
+	
+	map.on('singleclick', function(evt){
+		
+		coordsArr = ol.proj.transform([evt['coordinate'][0], evt['coordinate'][1]], 'EPSG:3857', 'EPSG:4326');		
+		callWebservice(api_url_nearest + coordsArr[1]+','+coordsArr[0], '#00ca00');
+	})
    
 }
 
 
-function drawPoints(points) {
+function drawPoints(points, color) {
 
 	for (i=0; i<points.length; i++) {
 		markerLayer = new ol.layer.Vector({
@@ -36,7 +45,7 @@ function drawPoints(points) {
 					width: 1
 				}),
 				fill: new ol.style.Fill({
-					color: '#0000FF'
+					color: color
 				})
 			}),
 			visible: true   
@@ -47,14 +56,15 @@ function drawPoints(points) {
 
 }
 
-function callWebservice(url) {
+
+function callWebservice(url, color) {
 
 	$.ajax({
 		type: 'GET',	
 		contentType: "application/json; charset=utf-8",	
 		datatype : 'json',
 		url: url,				
-		success: function(data, textStatus){ var obj = JSON.parse(JSON.stringify(data)); drawPoints(obj);},
+		success: function(data, textStatus){ var obj = JSON.parse(JSON.stringify(data)); drawPoints(obj, color);},
 		error:  function(jqXHR, textStatus, errorThrown){ }
 		 
 	});	
@@ -63,6 +73,6 @@ function callWebservice(url) {
 
 $(document).ready(function() {
 	
-	callWebservice('http://localhost/api/cars/all');
+	callWebservice(api_url_all, '#0000FF');
 
 });
