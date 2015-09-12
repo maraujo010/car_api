@@ -1,7 +1,7 @@
 var map;
 var api_url_all = 'http://localhost/api/cars/all';
 var api_url_nearest = 'http://localhost/api/cars?location=';
-
+var nlayers = 0;
 
 function init(){
     map = new ol.Map({
@@ -19,13 +19,30 @@ function init(){
 	map.addLayer(newLayer);	
 	
 	map.on('singleclick', function(evt){
+			
+		coordsArr = ol.proj.transform([evt['coordinate'][0], evt['coordinate'][1]], 'EPSG:3857', 'EPSG:4326');			
 		
-		coordsArr = ol.proj.transform([evt['coordinate'][0], evt['coordinate'][1]], 'EPSG:3857', 'EPSG:4326');		
+		if (nlayers>0) {
+			removeTopLayers();
+		}
+		
+		var point = JSON.parse(JSON.stringify([{'longitude':coordsArr[0], 'latitude':coordsArr[1]}]));		
+		drawPoints(point, '#dc3900');
+		
 		callWebservice(api_url_nearest + coordsArr[1]+','+coordsArr[0], '#00ca00');
-	})
-   
+		
+     })
 }
 
+
+function removeTopLayers() {
+	
+    var layers = map.getLayers();
+    
+    for (i=0; i<=nlayers+1; i++) {
+		layers.pop();
+	}
+}
 
 function drawPoints(points, color) {
 
@@ -54,6 +71,10 @@ function drawPoints(points, color) {
 		map.addLayer(markerLayer);			
 	}
 
+	if (color=='#00ca00') {
+		nlayers = points.length;
+	}
+	
 }
 
 
