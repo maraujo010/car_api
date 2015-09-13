@@ -43,7 +43,8 @@ Abstract class to process restful communications.
 Api class that performs the work for the endpoint.
 
 [js/script.js]
-This is the javascript file where all the frontend operations are done. Initializing map, api service call with ajax, selecting a location on mouse clicking, drawing and removing points as layers.
+This is the javascript file where all the frontend operations are done. 
+Initializing map, api service call with ajax, selecting a location on mouse clicking, drawing and removing points as layers.
 
 [cars.sql]
 "cars" database dump.
@@ -71,7 +72,9 @@ GET: /api/cars/all
 
 FRONTEND (testing)
 
-Browsing the url /test.php will show a OSM map with all the cars stored in the database. They are represented as small blue circles. Clicking on the map will select a location. Then a red circle is drawed at this location and all the nearest cars are selected with a green color.
+Browsing the url /test.php will show a OSM map with all the cars stored in the database. 
+They are represented as small blue circles. Clicking on the map will select a location. 
+Then a red circle is drawed at this location and all the nearest cars are selected with a green color.
 
 
 
@@ -81,9 +84,11 @@ SETTING UP THE API AND FRONTEND
 
 - Setting up the database:
 
-First i created the database "cars" and used the script "importer.php" to import all the data from the file "data.json". But now there is a database dump in the file "cars.sql". 
+First i created the database "cars" and used the script "importer.php" to import all the data from the file "data.json". 
+Now there is a database dump in the file "cars.sql". 
 
-So all you need to do is to create the database "cars" in your server and import the dump file with command: "psql cars < cars.sql"
+All you need to do is to create the database "cars" in your posgreSQL database server and import the dump file with command: 
+"psql cars < cars.sql"
 
 
 
@@ -120,7 +125,9 @@ Test url: http://localhost/testapi/test.html
 
 
 
-* There is a screenshot.jpg file where you can see an example of the map with a select location (red circle) and nearest cars (green circles). It also shows a firebug window where you can see all the requests to the api.
+* There is a "screenshot.jpg" file where you can see an example of the map 
+with a select location (red circle) and nearest cars (green circles). 
+It also shows a firebug window where you can see all the requests to the api.
 
 
 
