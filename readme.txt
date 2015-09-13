@@ -44,7 +44,8 @@ Api class that performs the work for the endpoint.
 
 [js/script.js]
 This is the javascript file where all the frontend operations are done. 
-Initializing map, api service call with ajax, selecting a location on mouse clicking, drawing and removing points as layers.
+Initializing map, api service call with ajax, selecting a location on mouse clicking, 
+drawing and removing points as layers.
 
 [cars.sql]
 "cars" database dump.
@@ -87,13 +88,14 @@ SETTING UP THE API AND FRONTEND
 First i created the database "cars" and used the script "importer.php" to import all the data from the file "data.json". 
 Now there is a database dump in the file "cars.sql". 
 
-All you need to do is to create the database "cars" in your posgreSQL database server and import the dump file with command: 
-"psql cars < cars.sql"
+All you need to do is to create the database "cars" in your posgreSQL database server 
+and import the dump file with command: "psql cars < cars.sql"
 
 
 
 - Setting up the api and test web server app config:
-Copy all the files to the configured web folder of your app. Do not forget .htaccess file which is routing all API requests.
+Copy all the files to the configured web folder of your app. 
+*Do not forget .htaccess file which is routing all API requests.
 
 As an example here is my apache configuration:
 
