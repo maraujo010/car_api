@@ -128,7 +128,7 @@ Test url: http://localhost/testapi/test.html
 
 
 * There is a "screenshot.jpg" file where you can see an example of the map 
-with a select location (red circle) and nearest cars (green circles). 
+with a selected location (red circle) and nearest cars (green circles). 
 It also shows a firebug window where you can see all the requests to the api.
 
 
