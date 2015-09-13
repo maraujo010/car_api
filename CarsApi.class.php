@@ -80,15 +80,15 @@ class CarsApi extends Restful
 			$point = explode(",",$location);			
 			$this->connectDB();
 						
-			$dist = 0.01;
+			$dist = 1000;
 			$resultArray = null;
 			
-			while ($dist<0.5) {
+			while ($dist<1000*50) {
 				
 				try {
 					$result = $this->db->prepare("select description, latitude, longitude from 
-												  (select description, latitude, longitude, ST_Distance(geography(geom), ST_GeographyFromText('POINT(".$point[1]." ".$point[0].")')) as distance 
-												  from cars where ST_DWithin(geom,  st_setsrid(st_makepoint(".$point[1].", ".$point[0]."),4326),".$dist.")
+												  (select description, latitude, longitude, ST_Distance(geography(geom), ST_GeogFromText('SRID=4326;POINT(".$point[1]." ".$point[0].")')) as distance 
+												  from cars where ST_DWithin(geography(geom), ST_GeogFromText('SRID=4326;POINT(".$point[1]." ".$point[0].")'),".$dist.")
 												  order by distance) as points LIMIT 10");	
 					$result->execute();				
 					
@@ -102,7 +102,7 @@ class CarsApi extends Restful
 					break;
 				}				
 				
-				$dist = $dist+0.005;						
+				$dist = $dist+1000;						
 			}
 			
 			if ($resultArray==null || count($resultArray)==0) {

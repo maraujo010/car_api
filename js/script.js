@@ -51,7 +51,7 @@ function drawPoints(points, color) {
 			source: new ol.source.Vector({
 				features: [
 					new ol.Feature({
-						geometry: new ol.geom.Circle(ol.proj.transform([points[i]['longitude'], points[i]['latitude']], 'EPSG:4326', 'EPSG:3857'), 50)
+						geometry: new ol.geom.Circle(ol.proj.transform([points[i]['longitude'], points[i]['latitude']], 'EPSG:4326', 'EPSG:3857'), 40)
 					})
 				]
 			}),
