@@ -1,8 +1,11 @@
+
 var map;
 var api_url_all = 'http://localhost/api/cars/all';
 var api_url_nearest = 'http://localhost/api/cars?location=';
 var nlayers = 0;
 
+
+/* init map */
 function init(){
     map = new ol.Map({
         target:'map',
@@ -35,6 +38,7 @@ function init(){
 }
 
 
+/* remove last added vector layers (remove last selected nearest cars) */
 function removeTopLayers() {
 	
     var layers = map.getLayers();
@@ -44,6 +48,7 @@ function removeTopLayers() {
 	}
 }
 
+/* draw points as vector layers */
 function drawPoints(points, color) {
 
 	for (i=0; i<points.length; i++) {
@@ -77,7 +82,7 @@ function drawPoints(points, color) {
 	
 }
 
-
+/* call api webservice: the color depends if represents all available cars or nearest cars */
 function callWebservice(url, color) {
 
 	$.ajax({
