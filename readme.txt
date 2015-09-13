@@ -44,8 +44,8 @@ Api class that performs the work for the endpoint.
 
 [js/script.js]
 This is the javascript file where all the frontend operations are done. 
-Initializing map, api service call with ajax, selecting a location on mouse clicking, 
-drawing and removing points as layers.
+Initializing map, api service call with ajax, selecting a user position on mouse clicking, 
+drawing and removing layers (markers).
 
 [cars.sql]
 "cars" database dump.
