@@ -74,8 +74,8 @@ GET: /api/cars/all
 FRONTEND (testing)
 
 Browsing the url /test.php will show a OSM map with all the cars stored in the database. 
-They are represented as small blue circles. Clicking on the map will select a location. 
-Then a red circle is drawed at this location and all the nearest cars are selected with a green color.
+They are represented as blue circles. Clicking on the map will select user position,  
+represented as a red circle. Then all the nearest cars are selected with a green circle (see screenshot.jpg)
 
 
 
